@@ -1,4 +1,5 @@
 {
+  "groups": [],
   "properties": [
     {
       "name": "server.compression.enabled",
@@ -357,10 +358,10 @@
     },
     {
       "name": "spring.batch.initialize-schema",
-      "type" : "org.springframework.boot.sql.init.DatabaseInitializationMode",
-      "deprecation" : {
+      "type": "org.springframework.boot.sql.init.DatabaseInitializationMode",
+      "deprecation": {
         "replacement": "spring.batch.jdbc.initialize-schema",
-        "level" : "error"
+        "level": "error"
       }
     },
     {
@@ -383,11 +384,11 @@
       "defaultValue": true
     },
     {
-      "name" : "spring.batch.schema",
-      "type" : "java.lang.String",
-      "deprecation" : {
+      "name": "spring.batch.schema",
+      "type": "java.lang.String",
+      "deprecation": {
         "replacement": "spring.batch.jdbc.schema",
-        "level" : "error"
+        "level": "error"
       }
     },
     {
@@ -551,6 +552,14 @@
       }
     },
     {
+      "name": "spring.data.cassandra.pool.heartbeat-interval",
+      "defaultValue": "30s"
+    },
+    {
+      "name": "spring.data.cassandra.pool.idle-timeout",
+      "defaultValue": "5s"
+    },
+    {
       "name": "spring.data.cassandra.pool.max-queue-size",
       "type": "java.lang.Integer",
       "deprecation": {
@@ -586,12 +595,12 @@
       "defaultValue": 5000
     },
     {
-      "name": "spring.data.cassandra.request.timeout",
-      "defaultValue": "2s"
-    },
-    {
       "name": "spring.data.cassandra.request.throttler.type",
       "defaultValue": "none"
+    },
+    {
+      "name": "spring.data.cassandra.request.timeout",
+      "defaultValue": "2s"
     },
     {
       "name": "spring.data.cassandra.retry-policy",
@@ -600,14 +609,6 @@
       "deprecation": {
         "level": "error"
       }
-    },
-    {
-      "name": "spring.data.cassandra.pool.heartbeat-interval",
-      "defaultValue": "30s"
-    },
-    {
-      "name": "spring.data.cassandra.pool.idle-timeout",
-      "defaultValue": "5s"
     },
     {
       "name": "spring.data.couchbase.consistency",
@@ -924,6 +925,10 @@
       "defaultValue": 50
     },
     {
+      "name": "spring.flyway.placeholder-separator",
+      "defaultValue": ":"
+    },
+    {
       "name": "spring.flyway.script-placeholder-prefix",
       "defaultValue": "FP__"
     },
@@ -1103,29 +1108,6 @@
       "deprecation": {
         "level": "error"
       }
-    },
-    {
-      "name": "spring.jmx.default-domain",
-      "type": "java.lang.String",
-      "description": "JMX domain name."
-    },
-    {
-      "name": "spring.jmx.enabled",
-      "type": "java.lang.Boolean",
-      "description": "Expose management beans to the JMX domain.",
-      "defaultValue": false
-    },
-    {
-      "name": "spring.jmx.server",
-      "type": "java.lang.String",
-      "description": "MBeanServer bean name.",
-      "defaultValue": "mbeanServer"
-    },
-    {
-      "name": "spring.jmx.unique-names",
-      "type": "java.lang.Boolean",
-      "description": "Whether unique runtime object names should be ensured.",
-      "defaultValue": false
     },
     {
       "name": "spring.jpa.open-in-view",
@@ -1504,6 +1486,16 @@
       "defaultValue": "required"
     },
     {
+      "name": "spring.kafka.listener.only-log-record-metadata",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "Whether to suppress the entire record from being written to the log when retries are being attempted.",
+      "deprecation": {
+        "reason": "Use KafkaUtils#setConsumerRecordFormatter instead.",
+        "level": "error"
+      }
+    },
+    {
       "name": "spring.kafka.listener.type",
       "defaultValue": "single"
     },
@@ -1606,13 +1598,18 @@
     },
     {
       "name": "spring.mongodb.embedded.features",
-      "defaultValue": [
-        "sync_delay"
-      ]
+      "deprecation": {
+        "level": "error",
+        "reason": "Feature support has been removed from Embedded Mongo. A custom MongodConfig bean should be defined instead."
+      }
     },
     {
       "name": "spring.mustache.prefix",
       "defaultValue": "classpath:/templates/"
+    },
+    {
+      "name": "spring.mustache.reactive.media-types",
+      "defaultValue": "text/html;charset=UTF-8"
     },
     {
       "name": "spring.mustache.suffix",
@@ -1680,6 +1677,10 @@
     {
       "name": "spring.neo4j.uri",
       "defaultValue": "bolt://localhost:7687"
+    },
+    {
+      "name": "spring.netty.leak-detection",
+      "defaultValue": "simple"
     },
     {
       "name": "spring.quartz.jdbc.comment-prefix",
@@ -2026,6 +2027,25 @@
       "defaultValue": "classpath:/templates/"
     },
     {
+      "name": "spring.thymeleaf.reactive.media-types",
+      "defaultValue": [
+        "text/html",
+        "application/xhtml+xml",
+        "application/xml",
+        "text/xml",
+        "application/rss+xml",
+        "application/atom+xml",
+        "application/javascript",
+        "application/ecmascript",
+        "text/javascript",
+        "text/ecmascript",
+        "application/json",
+        "text/css",
+        "text/plain",
+        "text/event-stream"
+      ]
+    },
+    {
       "name": "spring.thymeleaf.suffix",
       "defaultValue": ".html"
     },
@@ -2047,10 +2067,6 @@
       "name": "spring.webservices.wsdl-locations",
       "type": "java.util.List<java.lang.String>",
       "description": "Comma-separated list of locations of WSDLs and accompanying XSDs to be exposed as beans."
-    },
-    {
-      "name": "spring.netty.leak-detection",
-      "defaultValue": "simple"
     }
   ],
   "hints": [

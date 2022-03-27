@@ -98,8 +98,8 @@ public class SpringBootPlugin implements Plugin<Project> {
 
 	private void verifyGradleVersion() {
 		GradleVersion currentVersion = GradleVersion.current();
-		if (currentVersion.compareTo(GradleVersion.version("6.8")) < 0) {
-			throw new GradleException("Spring Boot plugin requires Gradle 6.8.x, 6.9.x, or 7.x. "
+		if (currentVersion.compareTo(GradleVersion.version("7.4")) < 0) {
+			throw new GradleException("Spring Boot plugin requires Gradle 7.x (7.4 or later). "
 					+ "The current version is " + currentVersion);
 		}
 	}
@@ -116,7 +116,8 @@ public class SpringBootPlugin implements Plugin<Project> {
 	}
 
 	private void registerPluginActions(Project project, Configuration bootArchives) {
-		SinglePublishedArtifact singlePublishedArtifact = new SinglePublishedArtifact(bootArchives.getArtifacts());
+		SinglePublishedArtifact singlePublishedArtifact = new SinglePublishedArtifact(bootArchives,
+				project.getArtifacts());
 		List<PluginApplicationAction> actions = Arrays.asList(new JavaPluginAction(singlePublishedArtifact),
 				new WarPluginAction(singlePublishedArtifact), new DependencyManagementPluginAction(),
 				new ApplicationPluginAction(), new KotlinPluginAction());

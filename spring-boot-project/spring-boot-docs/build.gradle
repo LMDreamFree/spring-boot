@@ -102,7 +102,8 @@ dependencies {
 	}
 	implementation("org.apache.tomcat.embed:tomcat-embed-core")
 	implementation("org.assertj:assertj-core")
-	implementation("org.codehaus.groovy:groovy")
+	implementation("org.cache2k:cache2k-spring")
+	implementation("org.apache.groovy:groovy")
 	implementation("org.hibernate:hibernate-jcache") {
 		exclude group: "javax.activation", module: "javax.activation-api"
 		exclude group: "javax.persistence", module: "javax.persistence-api"
@@ -151,11 +152,7 @@ dependencies {
 	implementation("org.springframework.restdocs:spring-restdocs-mockmvc") {
 		exclude group: "javax.servlet", module: "javax.servlet-api"
 	}
-	implementation("org.springframework.restdocs:spring-restdocs-restassured") {
-		exclude group: "commons-logging", module: "commons-logging"
-		exclude group: "javax.activation", module: "activation"
-		exclude group: "javax.xml.bind", module: "jaxb-api"
-	}
+	implementation("org.springframework.restdocs:spring-restdocs-restassured")
 	implementation("org.springframework.restdocs:spring-restdocs-webtestclient")
 	implementation("org.springframework.security:spring-security-config")
 	implementation("org.springframework.security:spring-security-oauth2-client")
@@ -256,6 +253,8 @@ task documentConfigurationProperties(type: org.springframework.boot.build.contex
 	outputDir = file("${buildDir}/docs/generated/")
 }
 
+task documentDevtoolsPropertyDefaults(type: org.springframework.boot.build.devtools.DocumentDevtoolsPropertyDefaults) {}
+
 tasks.withType(org.asciidoctor.gradle.jvm.AbstractAsciidoctorTask) {
 	dependsOn dependencyVersions
 	asciidoctorj {
@@ -316,6 +315,7 @@ syncDocumentationSourceForAsciidoctor {
 	dependsOn documentDependencyVersions
 	dependsOn documentVersionProperties
 	dependsOn documentConfigurationProperties
+	dependsOn documentDevtoolsPropertyDefaults
 	from("${buildDir}/docs/generated") {
 		into "asciidoc"
 	}
@@ -340,6 +340,7 @@ syncDocumentationSourceForAsciidoctorMultipage {
 	dependsOn documentDependencyVersions
 	dependsOn documentVersionProperties
 	dependsOn documentConfigurationProperties
+	dependsOn documentDevtoolsPropertyDefaults
 	from("${buildDir}/docs/generated") {
 		into "asciidoc"
 	}
@@ -364,6 +365,7 @@ syncDocumentationSourceForAsciidoctorPdf {
 	dependsOn documentDependencyVersions
 	dependsOn documentVersionProperties
 	dependsOn documentConfigurationProperties
+	dependsOn documentDevtoolsPropertyDefaults
 	from("${buildDir}/docs/generated") {
 		into "asciidoc"
 	}

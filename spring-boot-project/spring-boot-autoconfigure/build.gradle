@@ -67,7 +67,7 @@ dependencies {
 	optional("org.apache.tomcat.embed:tomcat-embed-websocket")
 	optional("org.apache.tomcat:tomcat-jdbc")
 	optional("org.apiguardian:apiguardian-api")
-	optional("org.codehaus.groovy:groovy-templates")
+	optional("org.apache.groovy:groovy-templates")
 	optional("com.github.ben-manes.caffeine:caffeine")
 	optional("com.github.mxab.thymeleaf.extras:thymeleaf-extras-data-attribute")
 	optional("com.sendgrid:sendgrid-java") {
@@ -77,6 +77,7 @@ dependencies {
 	optional("com.zaxxer:HikariCP")
 	optional("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
 	optional("org.aspectj:aspectjweaver")
+	optional("org.cache2k:cache2k-spring")
 	optional("org.eclipse.jetty:jetty-webapp") {
 		exclude group: "javax.servlet", module: "javax.servlet-api"
 		exclude(group: "org.eclipse.jetty", module: "jetty-jndi")
@@ -87,6 +88,11 @@ dependencies {
 	}
 	optional("org.eclipse.jetty.websocket:websocket-jetty-server") {
 		exclude(group: "org.eclipse.jetty", module: "jetty-jndi")
+	}
+	optional("org.ehcache:ehcache") {
+		artifact {
+			classifier = 'jakarta'
+		}
 	}
 	optional("org.elasticsearch.client:elasticsearch-rest-client") {
 		exclude group: "commons-logging", module: "commons-logging"
